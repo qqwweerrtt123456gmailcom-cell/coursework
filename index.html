@@ -27,47 +27,53 @@
     </div>
   </header>
   <main id="main">
+    <div class="container page-hero">
+      <h1>Ваш день, ваш ритм.</h1>
+      <p class="muted">Плануйте спокійно — навіть без інтернету.</p>
+    </div>
     <div class="container layout">
       <section class="card" aria-labelledby="add-heading">
-        <h1 id="add-heading">Нове завдання</h1>
-        <p class="muted">Дані зберігаються лише на цьому пристрої — сервер не потрібен.</p>
+        <h2 id="add-heading">Нове завдання</h2>
+        <p class="muted">Звільніть думки для важливого.</p>
         <form id="add-form" class="form-grid" novalidate>
             <div class="field field--wide">
               <label class="field__label" for="add-title">Назва завдання <span class="req" aria-hidden="true">*</span></label>
-              <input class="field__input" id="add-title" name="title" type="text" required maxlength="120" autocomplete="off" aria-describedby="add-title-error" aria-invalid="false">
+              <input class="field__input" id="add-title" name="title" type="text" required maxlength="120" autocomplete="off" placeholder="Що потрібно зробити?" aria-describedby="add-title-hint add-title-error" aria-invalid="false">
+              <span class="field__hint" id="add-title-hint">Наприклад, підготувати план тижня</span>
               <span class="field__error" data-error="title" id="add-title-error" aria-live="polite"></span>
             </div>
             <div class="field field--wide">
               <label class="field__label" for="add-notes">Нотатка</label>
-              <textarea class="field__input" id="add-notes" name="notes" maxlength="500" rows="2" aria-describedby="add-notes-error" aria-invalid="false"></textarea>
+              <textarea class="field__input" id="add-notes" name="notes" maxlength="500" rows="2" placeholder="Додайте деталі" aria-describedby="add-notes-hint add-notes-error" aria-invalid="false"></textarea>
+              <span class="field__hint" id="add-notes-hint">Необов’язково</span>
               <span class="field__error" data-error="notes" id="add-notes-error" aria-live="polite"></span>
             </div>
-            <div class="field">
+            <div class="field field--wide">
               <label class="field__label" for="add-due">Термін</label>
-              <input class="field__input" id="add-due" name="due" type="date" aria-describedby="add-due-error" aria-invalid="false">
+              <input class="field__input" id="add-due" name="due" type="date" aria-describedby="add-due-hint add-due-error" aria-invalid="false">
+              <span class="field__hint" id="add-due-hint">Необов’язково</span>
               <span class="field__error" data-error="due" id="add-due-error" aria-live="polite"></span>
             </div>
-            <div class="field">
+            <div class="field field--wide">
               <label class="field__label" for="add-priority">Пріоритет</label>
-              <select class="field__input" id="add-priority" name="priority">
+              <select class="field__input" id="add-priority" name="priority" aria-describedby="add-priority-hint">
                 <option value="normal">Звичайний</option>
                 <option value="high">Високий</option>
                 <option value="low">Низький</option>
               </select>
+              <span class="field__hint" id="add-priority-hint">Високий, звичайний або низький</span>
             </div>
           <button class="btn btn--primary field--wide" type="submit">Додати завдання</button>
         </form>
       </section>
 
       <section class="card" aria-labelledby="list-title">
-        <div class="list-head">
-          <h2 id="list-title">Мої завдання</h2>
-          <dl class="stats">
-            <div><dt>Усього</dt><dd id="stat-total">0</dd></div>
-            <div><dt>Активні</dt><dd id="stat-active">0</dd></div>
-            <div><dt>Виконані</dt><dd id="stat-done">0</dd></div>
-          </dl>
-        </div>
+        <h2 id="list-title">Мої завдання</h2>
+        <dl class="stats">
+          <div class="stat"><dt>Усього</dt><dd id="stat-total">0</dd></div>
+          <div class="stat stat--active"><dt>Активні</dt><dd id="stat-active">0</dd></div>
+          <div class="stat stat--done"><dt>Виконані</dt><dd id="stat-done">0</dd></div>
+        </dl>
         <div class="toolbar">
           <fieldset class="segmented">
             <legend class="visually-hidden">Фільтр завдань</legend>
@@ -77,7 +83,7 @@
           </fieldset>
           <div class="toolbar__right">
             <label class="visually-hidden" for="search">Пошук</label>
-            <input class="field__input field__input--sm" id="search" type="search" placeholder="Пошук…">
+            <input class="field__input field__input--sm" id="search" type="search" placeholder="Пошук за назвою…">
             <label class="visually-hidden" for="sort">Сортування</label>
             <select class="field__input field__input--sm" id="sort">
               <option value="due">За терміном</option>
@@ -88,20 +94,22 @@
         </div>
         <ul id="task-list" class="task-list" aria-live="polite"></ul>
         <p id="empty" class="empty">Завдань немає. Додайте перше — воно збережеться навіть без інтернету.</p>
+        <p class="saved-note"><span id="saved-status">Усі зміни збережено на цьому пристрої</span><br><span class="muted">Ваші завдання доступні й без з’єднання.</span></p>
       </section>
 
       <section class="card" aria-labelledby="sync-title">
         <h2 id="sync-title">Синхронізація і сховище</h2>
-        <p class="muted">Ідентифікатор цього пристрою: <code id="device-id">—</code></p>
-        <p>Щоб перенести завдання на інший пристрій, експортуйте файл і імпортуйте його там. Записи об’єднуються: для кожного завдання перемагає новіша версія.</p>
-        <div class="actions">
+        <p class="muted">Дані зберігаються у цьому браузері. Зробіть резервну копію, щоб перенести їх на інший пристрій. Записи об’єднуються: для кожного завдання перемагає новіша версія.</p>
+        <div class="actions sync-actions">
           <button class="btn btn--secondary" id="export-btn" type="button">Експортувати JSON</button>
           <label class="btn btn--secondary" for="import-input">Імпортувати й об’єднати</label>
           <input class="visually-hidden" id="import-input" type="file" accept="application/json,.json">
         </div>
         <p id="sync-status" class="notice" role="status"></p>
+        <p class="tagline">Без акаунта. Без зайвих серверів.</p>
         <p id="storage-info" class="muted">Перевіряю сховище…</p>
         <button class="btn btn--ghost" id="persist-btn" type="button" hidden>Захистити дані від очищення</button>
+        <p class="muted small">Ідентифікатор цього пристрою: <code id="device-id">—</code></p>
       </section>
     </div>
   </main>
@@ -111,26 +119,30 @@
       <h2 id="edit-heading" class="field--wide">Редагування завдання</h2>
             <div class="field field--wide">
               <label class="field__label" for="edit-title">Назва завдання <span class="req" aria-hidden="true">*</span></label>
-              <input class="field__input" id="edit-title" name="title" type="text" required maxlength="120" autocomplete="off" aria-describedby="edit-title-error" aria-invalid="false">
+              <input class="field__input" id="edit-title" name="title" type="text" required maxlength="120" autocomplete="off" placeholder="Що потрібно зробити?" aria-describedby="edit-title-hint edit-title-error" aria-invalid="false">
+              <span class="field__hint" id="edit-title-hint">Наприклад, підготувати план тижня</span>
               <span class="field__error" data-error="title" id="edit-title-error" aria-live="polite"></span>
             </div>
             <div class="field field--wide">
               <label class="field__label" for="edit-notes">Нотатка</label>
-              <textarea class="field__input" id="edit-notes" name="notes" maxlength="500" rows="2" aria-describedby="edit-notes-error" aria-invalid="false"></textarea>
+              <textarea class="field__input" id="edit-notes" name="notes" maxlength="500" rows="2" placeholder="Додайте деталі" aria-describedby="edit-notes-hint edit-notes-error" aria-invalid="false"></textarea>
+              <span class="field__hint" id="edit-notes-hint">Необов’язково</span>
               <span class="field__error" data-error="notes" id="edit-notes-error" aria-live="polite"></span>
             </div>
-            <div class="field">
+            <div class="field field--wide">
               <label class="field__label" for="edit-due">Термін</label>
-              <input class="field__input" id="edit-due" name="due" type="date" aria-describedby="edit-due-error" aria-invalid="false">
+              <input class="field__input" id="edit-due" name="due" type="date" aria-describedby="edit-due-hint edit-due-error" aria-invalid="false">
+              <span class="field__hint" id="edit-due-hint">Необов’язково</span>
               <span class="field__error" data-error="due" id="edit-due-error" aria-live="polite"></span>
             </div>
-            <div class="field">
+            <div class="field field--wide">
               <label class="field__label" for="edit-priority">Пріоритет</label>
-              <select class="field__input" id="edit-priority" name="priority">
+              <select class="field__input" id="edit-priority" name="priority" aria-describedby="edit-priority-hint">
                 <option value="normal">Звичайний</option>
                 <option value="high">Високий</option>
                 <option value="low">Низький</option>
               </select>
+              <span class="field__hint" id="edit-priority-hint">Високий, звичайний або низький</span>
             </div>
       <div class="actions field--wide">
         <button class="btn btn--primary" type="submit">Зберегти</button>
