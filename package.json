@@ -1,0 +1,14 @@
+{
+  "name": "localdo",
+  "version": "1.0.0",
+  "description": "LocalDo — планувальник завдань за концепцією Local-First: IndexedDB, офлайн-режим, синхронізація зі злиттям",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": { "node": ">=20" },
+  "author": "Грабівчук Сергій Романович, група 31-КН",
+  "license": "MIT"
+}
