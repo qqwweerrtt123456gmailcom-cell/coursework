@@ -5,7 +5,7 @@
 Автор: Грабівчук Сергій Романович, група 31-КН, ВСП «Івано-Франківський фаховий коледж ЛНУП». Керівник: Кулик Р. М.
 
 - Робочий сайт: https://qqwweerrtt123456gmailcom-cell.github.io/coursework/
-- Макети Figma: _посилання на файл Figma_
+- Макети Figma: https://www.figma.com/design/E30Y2gRpHJybGbcWENRP2C
 
 ## Що це
 
