@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+  <title>Про Local-First — LocalDo</title>
+  <meta name="description" content="Як LocalDo реалізує сім принципів Local-First software.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="./"><span class="logo__mark" aria-hidden="true">✓</span>LocalDo</a>
+      <nav aria-label="Основна навігація">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="./">Завдання</a></li>
+          <li><a class="nav__link" href="./about.html" aria-current="page">Про Local-First</a></li>
+        </ul>
+      </nav>
+      <span id="net-status" class="badge badge--online" role="status">Онлайн</span>
+    </div>
+  </header>
+  <main id="main">
+    <div class="container">
+      <section class="hero">
+        <h1>Local-First: ваші дані — на вашому пристрої</h1>
+        <p>Local-First — підхід, за якого основна копія даних зберігається на пристрої користувача, а сервер (якщо він є) лише допомагає синхронізації. LocalDo показує цей підхід на прикладі планувальника завдань.</p>
+        <a class="btn btn--primary" href="./">Перейти до завдань</a>
+      </section>
+      <h2 class="section-title">Сім принципів і їх реалізація в LocalDo</h2>
+      <ol class="ideals">
+          <li><strong>Швидкість</strong><span>Усі дії виконуються з локальною базою IndexedDB — без очікування відповіді сервера.</span></li>
+          <li><strong>Багато пристроїв</strong><span>Дані переносяться через експорт і злиття файлу; кожен пристрій має свій ідентифікатор.</span></li>
+          <li><strong>Робота офлайн</strong><span>Service Worker кешує застосунок, тож він відкривається і працює без інтернету.</span></li>
+          <li><strong>Співпраця</strong><span>Злиття за правилом «перемагає новіша версія» (LWW) дає однаковий результат на всіх пристроях.</span></li>
+          <li><strong>Довговічність</strong><span>Формат експорту — відкритий JSON, його можна прочитати без LocalDo.</span></li>
+          <li><strong>Приватність</strong><span>Жодних серверів і аналітики: завдання не залишають ваш пристрій без вашої дії.</span></li>
+          <li><strong>Контроль над даними</strong><span>Експорт, імпорт і запит постійного сховища — у руках користувача.</span></li>
+      </ol>
+      <h2 class="section-title">Технології</h2>
+      <ul class="tech">
+        <li><strong>IndexedDB</strong> — локальна база даних браузера</li>
+        <li><strong>Service Worker і Cache Storage</strong> — робота без мережі</li>
+        <li><strong>BroadcastChannel</strong> — миттєва синхронізація між вкладками</li>
+        <li><strong>StorageManager API</strong> — квота і постійне сховище</li>
+        <li><strong>Web App Manifest</strong> — встановлення як застосунку</li>
+      </ul>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© 2026 LocalDo — курсова робота, Грабівчук Сергій, група 31-КН</p>
+      <p><a href="https://github.com/qqwweerrtt123456gmailcom-cell/coursework">Код на GitHub</a></p>
+    </div>
+  </footer>
+  <script type="module" src="./js/net.js"></script>
+</body>
+</html>
