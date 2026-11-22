@@ -28,8 +28,14 @@ async function reload() {
   render();
 }
 
+function markSaved() {
+  const t = new Date().toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+  $('#saved-status').textContent = `Усі зміни збережено на цьому пристрої о ${t}`;
+}
+
 async function save(task) {
   await putTask(task);
+  markSaved();
   const i = state.tasks.findIndex((t) => t.id === task.id);
   if (i >= 0) state.tasks[i] = task; else state.tasks.push(task);
   render();
@@ -186,6 +192,7 @@ async function importData(e) {
   try {
     const { tasks, stats: s, skipped } = mergeImport(state.tasks, await file.text());
     await putTasks(tasks);
+    markSaved();
     state.tasks = tasks;
     render();
     notifyTabs();
