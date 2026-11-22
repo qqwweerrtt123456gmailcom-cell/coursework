@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="uk"><head><meta charset="utf-8"><style>
+body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:#fff;color:#13201e}
+.sec{padding:32px;display:inline-block;background:#fff}
+h2{margin:0 0 20px;font-size:24px}
+/* DS */
+.sw{display:inline-block;margin:0 12px 16px 0;width:110px;font-size:12px;color:#4f5d5a;vertical-align:top}
+.sw div{height:64px;border-radius:10px;border:1px solid #c5d1ce;margin-bottom:6px}
+.typo p{margin:6px 0}
+.comp{display:flex;gap:24px;align-items:flex-start;margin-top:16px;flex-wrap:wrap}
+.btn{height:48px;padding:0 24px;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;font-size:16px}
+.f{width:260px}.f label{font-weight:600;display:block;margin-bottom:4px}.f .i{height:44px;border:1.5px solid #c5d1ce;border-radius:10px;padding:0 14px;display:flex;align-items:center}
+.f small{display:block;font-size:13px;margin-top:4px;color:#4f5d5a}
+/* WF */
+.wf{background:#f2f2f2;border:2px solid #999;position:relative}
+.bar{background:#c8c8c8;border-radius:4px;height:12px;margin:8px 0}
+.box{border:2px solid #999;background:#fff;border-radius:6px}
+.inp{border:2px solid #999;height:36px;border-radius:6px;background:#fff;margin:4px 0 14px}
+.lbl{width:30%;height:10px;background:#999;border-radius:3px}
+.btnw{height:40px;background:#777;border-radius:6px}
+.x{display:flex;align-items:center;justify-content:center;color:#666;font-size:13px}
+/* flow */
+.node{border:2px solid #0f766e;border-radius:10px;padding:10px 14px;background:#e0f2ef;font-size:14px;text-align:center}
+.dec{border:2px solid #8a5a00;background:#fff6e0;border-radius:10px;padding:10px 14px;font-size:14px;text-align:center}
+.err{border:2px solid #b3261e;background:#fdecea;border-radius:10px;padding:10px 14px;font-size:14px;text-align:center}
+.ok{border:2px solid #146c38;background:#e6f4ea;border-radius:10px;padding:10px 14px;font-size:14px;text-align:center}
+.col{display:flex;flex-direction:column;align-items:center;gap:6px}
+.arr{font-size:20px;color:#4f5d5a;line-height:1}
+.rowf{display:flex;gap:16px;align-items:center}
+</style></head><body><div class="sec" id="ds" style="width:900px">
+<h2>Дизайн-система LocalDo</h2>
+<div>
+<div class="sw"><div style="background:#0f766e"></div>primary #0F766E</div>
+<div class="sw"><div style="background:#0b5d56"></div>primary-hover #0B5D56</div>
+<div class="sw"><div style="background:#e0f2ef"></div>primary-soft #E0F2EF</div>
+<div class="sw"><div style="background:#13201e"></div>text #13201E</div>
+<div class="sw"><div style="background:#4f5d5a"></div>muted #4F5D5A</div>
+<div class="sw"><div style="background:#f4f7f6"></div>bg #F4F7F6</div>
+<div class="sw"><div style="background:#ffffff"></div>surface #FFFFFF</div>
+<div class="sw"><div style="background:#c5d1ce"></div>border #C5D1CE</div>
+<div class="sw"><div style="background:#b3261e"></div>error / high #B3261E</div>
+<div class="sw"><div style="background:#8a4b00"></div>warning #8A4B00</div>
+<div class="sw"><div style="background:#146c38"></div>success #146C38</div>
+<div class="sw"><div style="background:#6b7a77"></div>low #6B7A77</div>
+</div>
+<div class="typo">
+<p style="font-size:32px;font-weight:700">H1 · 32/40 Bold</p>
+<p style="font-size:20px;font-weight:700">H2 · 20/25 Bold</p>
+<p style="font-size:16px;font-weight:600">Label · 16/24 Semi Bold</p>
+<p style="font-size:16px">Body · 16/24 Regular</p>
+<p style="font-size:14px;color:#4f5d5a">Small · 14/20 Regular</p>
+<p style="font-size:13px;color:#4f5d5a">Відступи: 4 · 8 · 12 · 16 · 24 · 32 · 48 px &nbsp;|&nbsp; Радіуси: 6 · 10 · 16 px</p>
+</div>
+<div class="comp">
+<span class="btn" style="background:#0f766e;color:#fff">Primary</span>
+<span class="btn" style="border:2px solid #0f766e;color:#0f766e">Secondary</span>
+<span class="btn" style="color:#0f766e">Ghost</span>
+<span class="btn" style="color:#b3261e">Danger</span>
+<span class="btn" style="background:#e0f2ef;color:#0f766e;height:30px;border-radius:999px;font-size:14px">Онлайн</span>
+<span class="btn" style="background:#fff1db;color:#8a4b00;height:30px;border-radius:999px;font-size:14px">Офлайн — усе працює</span>
+</div>
+<div class="comp">
+<div style="width:400px;border:1px solid #c5d1ce;border-left:4px solid #b3261e;border-radius:10px;padding:12px 16px">
+<b>☐ Захист курсової роботи</b><br><small style="color:#4f5d5a">Пріоритет: Високий · До 23.11.2026</small></div>
+<div style="width:400px;border:1px solid #c5d1ce;border-left:4px solid #0f766e;border-radius:10px;padding:12px 16px">
+<b style="text-decoration:line-through;color:#4f5d5a">☑ Записатися на практику</b><br><small style="color:#4f5d5a">Пріоритет: Звичайний</small></div>
+</div>
+</div>
+
+<div class="sec" id="wf-desktop">
+<div class="wf" style="width:880px;height:520px">
+ <div style="height:50px;border-bottom:2px solid #999;display:flex;align-items:center;gap:12px;padding:0 20px;background:#fff">
+  <div class="box x" style="width:110px;height:28px">Логотип</div><div style="flex:1"></div>
+  <div class="box x" style="width:80px;height:26px">Завдання</div><div class="box x" style="width:120px;height:26px">Про Local-First</div><div class="box x" style="width:110px;height:24px;border-radius:12px">Статус мережі</div>
+ </div>
+ <div style="display:flex;gap:20px;padding:20px">
+  <div style="width:300px;display:flex;flex-direction:column;gap:16px">
+   <div class="box" style="padding:14px"><div class="bar" style="width:60%;height:16px;background:#999"></div>
+    <div class="lbl"></div><div class="inp"></div><div class="lbl"></div><div class="inp" style="height:50px"></div>
+    <div style="display:flex;gap:8px"><div style="flex:1"><div class="lbl" style="width:50%"></div><div class="inp"></div></div><div style="flex:1"><div class="lbl" style="width:50%"></div><div class="inp"></div></div></div>
+    <div class="btnw x" style="color:#fff">Додати</div></div>
+   <div class="box x" style="height:130px">Синхронізація: експорт / імпорт, сховище</div>
+  </div>
+  <div class="box" style="flex:1;padding:14px">
+   <div style="display:flex;justify-content:space-between"><div class="bar" style="width:30%;height:16px;background:#999"></div><div class="x">Лічильники</div></div>
+   <div style="display:flex;gap:8px;margin:10px 0"><div class="box x" style="width:160px;height:30px">Фільтр</div><div class="box x" style="width:160px;height:30px">Пошук</div><div class="box x" style="width:110px;height:30px">Сортування</div></div>
+   <div class="box" style="height:46px;margin-bottom:8px;border-left-width:6px"></div><div class="box" style="height:46px;margin-bottom:8px;border-left-width:6px"></div>
+   <div class="box" style="height:46px;margin-bottom:8px;border-left-width:6px"></div><div class="box x" style="height:46px;border-left-width:6px">Картка завдання: прапорець · назва · дати · дії</div>
+  </div>
+ </div>
+</div></div>
+
+<div class="sec" id="wf-mobile">
+<div class="wf" style="width:220px;height:520px">
+ <div style="height:60px;border-bottom:2px solid #999;background:#fff;padding:8px;display:flex;flex-wrap:wrap;gap:4px">
+  <div class="box" style="width:80px;height:20px"></div><div class="box" style="width:60px;height:20px"></div><div class="box" style="width:70px;height:18px;border-radius:9px"></div></div>
+ <div class="box" style="margin:10px;padding:10px"><div class="lbl"></div><div class="inp"></div><div class="lbl"></div><div class="inp"></div><div class="btnw"></div></div>
+ <div class="box" style="margin:10px;padding:10px"><div class="box" style="height:24px;margin-bottom:6px"></div><div class="box" style="height:40px;margin-bottom:6px"></div><div class="box" style="height:40px;margin-bottom:6px"></div><div class="box" style="height:40px"></div></div>
+ <div class="x">Синхронізація — внизу</div>
+</div></div>
+
+<div class="sec" id="flow">
+<h2 style="font-size:20px">User flow: робота із завданням</h2>
+<div class="col">
+<div class="node">Користувач відкриває LocalDo (онлайн або офлайн)</div><div class="arr">↓</div>
+<div class="node">Service Worker віддає застосунок із кешу</div><div class="arr">↓</div>
+<div class="node">Дані завантажуються з IndexedDB</div><div class="arr">↓</div>
+<div class="node">Додавання / зміна / видалення завдання</div><div class="arr">↓</div>
+<div class="rowf"><div class="dec">Дані коректні?</div><span>ні →</span><div class="err">Помилка біля поля, фокус на ньому</div></div><div class="arr">↓ так</div>
+<div class="ok">Запис у IndexedDB (нова версія, updatedAt)</div><div class="arr">↓</div>
+<div class="rowf"><div class="node">Оновлення екрана</div><span>+</span><div class="node">Сповіщення інших вкладок</div></div><div class="arr">↓ за потреби</div>
+<div class="rowf"><div class="node">Експорт JSON</div><span>→ інший пристрій →</span><div class="node">Імпорт і злиття LWW</div></div>
+</div></div>
+
+<div class="sec" id="arch">
+<h2 style="font-size:20px">Архітектура LocalDo</h2>
+<div style="display:flex;gap:24px;align-items:stretch">
+ <div class="box" style="padding:14px;width:340px;border-color:#0f766e">
+  <b>Вкладка браузера</b>
+  <div class="node" style="margin-top:8px">app.js — інтерфейс, події</div>
+  <div class="dec" style="margin-top:8px">model.js — валідація, LWW-злиття</div>
+  <div class="node" style="margin-top:8px">sync.js — BroadcastChannel, експорт / імпорт</div>
+  <div class="node" style="margin-top:8px">db.js — обгортка IndexedDB</div>
+ </div>
+ <div style="display:flex;flex-direction:column;gap:12px;width:330px">
+  <div class="ok">IndexedDB «localdo»: сховища tasks і meta</div>
+  <div class="ok">Cache Storage «localdo-v1»: HTML, CSS, JS, іконки</div>
+  <div class="dec">sw.js — Service Worker (stale-while-revalidate)</div>
+  <div class="node">Інші вкладки ⇄ BroadcastChannel</div>
+  <div class="box x" style="padding:8px;border-style:dashed">Інший пристрій ⇄ JSON-файл localdo/v1</div>
+  <div class="box x" style="padding:8px;border-style:dashed">GitHub Pages — лише роздає статичні файли</div>
+ </div>
+</div></div>
+
+<div class="sec" id="merge">
+<h2 style="font-size:20px">Злиття даних двох пристроїв (Last-Writer-Wins)</h2>
+<div style="display:flex;gap:28px;align-items:center">
+ <div class="box" style="padding:12px;width:250px"><b>Пристрій A</b>
+  <div class="node" style="margin-top:6px">#1 «Записка» · t=100</div>
+  <div class="node" style="margin-top:6px">#2 «Презентація» · t=300</div>
+  <div class="node" style="margin-top:6px">#3 «Звіт» · t=150</div></div>
+ <div style="font-size:28px">+</div>
+ <div class="box" style="padding:12px;width:250px"><b>Пристрій B</b>
+  <div class="node" style="margin-top:6px">#1 «Записка (B)» · t=200</div>
+  <div class="err" style="margin-top:6px">#2 видалено · t=250</div>
+  <div class="node" style="margin-top:6px">#4 «Купити хліб» · t=180</div></div>
+ <div style="font-size:28px">=</div>
+ <div class="box" style="padding:12px;width:270px;border-color:#146c38"><b>Результат (однаковий на A і B)</b>
+  <div class="ok" style="margin-top:6px">#1 «Записка (B)» — новіша</div>
+  <div class="ok" style="margin-top:6px">#2 «Презентація» — 300 &gt; 250</div>
+  <div class="ok" style="margin-top:6px">#3 «Звіт» — лише на A</div>
+  <div class="ok" style="margin-top:6px">#4 «Купити хліб» — лише на B</div></div>
+</div></div>
+
+<div class="sec" id="sitemap">
+<h2 style="font-size:20px">Карта сайту</h2>
+<div class="col">
+<div class="node" style="width:240px">LocalDo (index.html)</div><div class="arr">↓</div>
+<div style="display:flex;gap:16px">
+<div class="node">Нове завдання<br>(форма)</div><div class="node">Мої завдання<br>(фільтр, пошук, список)</div><div class="node">Синхронізація<br>і сховище</div><div class="node">Діалог<br>редагування</div><div class="node">Про Local-First<br>(about.html)</div>
+</div></div></div>
+</body></html>
