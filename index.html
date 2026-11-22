@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+  <title>LocalDo — завдання без інтернету</title>
+  <meta name="description" content="LocalDo — планувальник завдань за концепцією Local-First: дані зберігаються на вашому пристрої та доступні офлайн.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="./"><span class="logo__mark" aria-hidden="true">✓</span>LocalDo</a>
+      <nav aria-label="Основна навігація">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="./" aria-current="page">Завдання</a></li>
+          <li><a class="nav__link" href="./about.html">Про Local-First</a></li>
+        </ul>
+      </nav>
+      <span id="net-status" class="badge badge--online" role="status">Онлайн</span>
+    </div>
+  </header>
+  <main id="main">
+    <div class="container layout">
+      <section class="card" aria-labelledby="add-heading">
+        <h1 id="add-heading">Нове завдання</h1>
+        <p class="muted">Дані зберігаються лише на цьому пристрої — сервер не потрібен.</p>
+        <form id="add-form" class="form-grid" novalidate>
+            <div class="field field--wide">
+              <label class="field__label" for="add-title">Назва завдання <span class="req" aria-hidden="true">*</span></label>
+              <input class="field__input" id="add-title" name="title" type="text" required maxlength="120" autocomplete="off" aria-describedby="add-title-error" aria-invalid="false">
+              <span class="field__error" data-error="title" id="add-title-error" aria-live="polite"></span>
+            </div>
+            <div class="field field--wide">
+              <label class="field__label" for="add-notes">Нотатка</label>
+              <textarea class="field__input" id="add-notes" name="notes" maxlength="500" rows="2" aria-describedby="add-notes-error" aria-invalid="false"></textarea>
+              <span class="field__error" data-error="notes" id="add-notes-error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="add-due">Термін</label>
+              <input class="field__input" id="add-due" name="due" type="date" aria-describedby="add-due-error" aria-invalid="false">
+              <span class="field__error" data-error="due" id="add-due-error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="add-priority">Пріоритет</label>
+              <select class="field__input" id="add-priority" name="priority">
+                <option value="normal">Звичайний</option>
+                <option value="high">Високий</option>
+                <option value="low">Низький</option>
+              </select>
+            </div>
+          <button class="btn btn--primary field--wide" type="submit">Додати завдання</button>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="list-title">
+        <div class="list-head">
+          <h2 id="list-title">Мої завдання</h2>
+          <dl class="stats">
+            <div><dt>Усього</dt><dd id="stat-total">0</dd></div>
+            <div><dt>Активні</dt><dd id="stat-active">0</dd></div>
+            <div><dt>Виконані</dt><dd id="stat-done">0</dd></div>
+          </dl>
+        </div>
+        <div class="toolbar">
+          <fieldset class="segmented">
+            <legend class="visually-hidden">Фільтр завдань</legend>
+            <input type="radio" id="f-all" name="filter" value="all" checked><label for="f-all">Усі</label>
+            <input type="radio" id="f-active" name="filter" value="active"><label for="f-active">Активні</label>
+            <input type="radio" id="f-done" name="filter" value="done"><label for="f-done">Виконані</label>
+          </fieldset>
+          <div class="toolbar__right">
+            <label class="visually-hidden" for="search">Пошук</label>
+            <input class="field__input field__input--sm" id="search" type="search" placeholder="Пошук…">
+            <label class="visually-hidden" for="sort">Сортування</label>
+            <select class="field__input field__input--sm" id="sort">
+              <option value="due">За терміном</option>
+              <option value="priority">За пріоритетом</option>
+              <option value="created">Спочатку нові</option>
+            </select>
+          </div>
+        </div>
+        <ul id="task-list" class="task-list" aria-live="polite"></ul>
+        <p id="empty" class="empty">Завдань немає. Додайте перше — воно збережеться навіть без інтернету.</p>
+      </section>
+
+      <section class="card" aria-labelledby="sync-title">
+        <h2 id="sync-title">Синхронізація і сховище</h2>
+        <p class="muted">Ідентифікатор цього пристрою: <code id="device-id">—</code></p>
+        <p>Щоб перенести завдання на інший пристрій, експортуйте файл і імпортуйте його там. Записи об’єднуються: для кожного завдання перемагає новіша версія.</p>
+        <div class="actions">
+          <button class="btn btn--secondary" id="export-btn" type="button">Експортувати JSON</button>
+          <label class="btn btn--secondary" for="import-input">Імпортувати й об’єднати</label>
+          <input class="visually-hidden" id="import-input" type="file" accept="application/json,.json">
+        </div>
+        <p id="sync-status" class="notice" role="status"></p>
+        <p id="storage-info" class="muted">Перевіряю сховище…</p>
+        <button class="btn btn--ghost" id="persist-btn" type="button" hidden>Захистити дані від очищення</button>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="edit-dialog" class="dialog" aria-labelledby="edit-heading">
+    <form id="edit-form" class="form-grid" novalidate>
+      <h2 id="edit-heading" class="field--wide">Редагування завдання</h2>
+            <div class="field field--wide">
+              <label class="field__label" for="edit-title">Назва завдання <span class="req" aria-hidden="true">*</span></label>
+              <input class="field__input" id="edit-title" name="title" type="text" required maxlength="120" autocomplete="off" aria-describedby="edit-title-error" aria-invalid="false">
+              <span class="field__error" data-error="title" id="edit-title-error" aria-live="polite"></span>
+            </div>
+            <div class="field field--wide">
+              <label class="field__label" for="edit-notes">Нотатка</label>
+              <textarea class="field__input" id="edit-notes" name="notes" maxlength="500" rows="2" aria-describedby="edit-notes-error" aria-invalid="false"></textarea>
+              <span class="field__error" data-error="notes" id="edit-notes-error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="edit-due">Термін</label>
+              <input class="field__input" id="edit-due" name="due" type="date" aria-describedby="edit-due-error" aria-invalid="false">
+              <span class="field__error" data-error="due" id="edit-due-error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="edit-priority">Пріоритет</label>
+              <select class="field__input" id="edit-priority" name="priority">
+                <option value="normal">Звичайний</option>
+                <option value="high">Високий</option>
+                <option value="low">Низький</option>
+              </select>
+            </div>
+      <div class="actions field--wide">
+        <button class="btn btn--primary" type="submit">Зберегти</button>
+        <button class="btn btn--ghost" id="edit-cancel" type="button">Скасувати</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© 2026 LocalDo — курсова робота, Грабівчук Сергій, група 31-КН</p>
+      <p><a href="https://github.com/qqwweerrtt123456gmailcom-cell/coursework">Код на GitHub</a></p>
+    </div>
+  </footer>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
