@@ -3,7 +3,7 @@
  * щоб LocalDo відкривався без інтернету.
  * Стратегія: спочатку кеш, у фоні — оновлення з мережі (stale-while-revalidate).
  */
-const CACHE = 'localdo-v1';
+const CACHE = 'localdo-v2';
 const SHELL = [
   './', './index.html', './about.html', './css/styles.css',
   './js/app.js', './js/model.js', './js/db.js', './js/sync.js', './js/net.js',
